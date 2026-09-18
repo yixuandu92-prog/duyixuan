@@ -1,6 +1,6 @@
 # Demo tasks
 
-- [ ] Build shared management layout and navigation
-- [ ] Build overview with interactions
-- [ ] Build trends, alerts, advisor, report, and import pages
-- [ ] Verify desktop and narrow layouts
+- [x] Build shared management layout and navigation
+- [x] Build overview with interactions
+- [x] Build trends, alerts, advisor, report, and import pages
+- [x] Verify desktop and narrow layouts
