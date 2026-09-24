@@ -4,7 +4,7 @@ import { Download, FileText, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHeading, Panel } from "@/components/dashboard/page-elements";
 
-export const Route = createFileRoute("/weekly-report")({
+export const Route = createFileRoute("/analysis/weekly-report")({
   head: () => ({ meta: [
     { title: "AI经营周报｜山居经营助手" }, { name: "description", content: "生成并查看民宿每周经营概况、问题与下周计划。" },
     { property: "og:title", content: "AI经营周报｜山居经营助手" }, { property: "og:description", content: "生成并查看民宿每周经营概况、问题与下周计划。" },
