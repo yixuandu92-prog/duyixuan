@@ -38,7 +38,9 @@ function AdvisorPage() {
     if (q) ask(q);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => endRef.current?.scrollIntoView({ block: "nearest" }), [msgs]);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "nearest" });
+  }, [msgs]);
 
   return (
     <>
