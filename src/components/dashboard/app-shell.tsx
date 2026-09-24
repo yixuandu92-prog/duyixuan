@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Bot, Home, LineChart, MessagesSquare, Settings, Store, Tags } from "lucide-react";
+import { AlertTriangle, BarChart3, Bot, ClipboardList, Home, LineChart, MessagesSquare, Settings, Store, Tags } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigation = [
@@ -9,6 +9,11 @@ const navigation = [
   { to: "/pricing", label: "智能定价", icon: Tags },
   { to: "/competitors", label: "竞品分析", icon: Store },
   { to: "/advisor", label: "AI Chat", icon: MessagesSquare },
+] as const;
+const dataNav = [
+  { to: "/trends", label: "数据与趋势", icon: BarChart3 },
+  { to: "/alerts", label: "风险预警", icon: AlertTriangle },
+  { to: "/weekly-report", label: "经营周报", icon: ClipboardList },
 ] as const;
 
 function NavItem({ to, label, icon: Icon, active }: { to: string; label: string; icon: typeof Home; active: boolean }) {
@@ -42,6 +47,10 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
         <nav aria-label="主要菜单" className="flex gap-1 overflow-x-auto px-3 pb-3 lg:flex-1 lg:flex-col lg:overflow-visible">
           {navigation.map((item) => (
+            <NavItem key={item.to} {...item} active={pathname === item.to} />
+          ))}
+          <p className="hidden px-3 pb-1 pt-4 text-xs text-muted-foreground lg:block">经营数据</p>
+          {dataNav.map((item) => (
             <NavItem key={item.to} {...item} active={pathname === item.to} />
           ))}
         </nav>
