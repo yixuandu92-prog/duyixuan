@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { ArrowRight, ChevronDown, ChevronRight, Lightbulb, LineChart, Store, Tags } from "lucide-react";
+import { ArrowRight, Lightbulb, LineChart, Store, Tags } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AgentAvatar, AskBox, Card, Chips, PageTitle, meta } from "@/components/dashboard/agent";
 
@@ -15,7 +15,6 @@ const features = [
   { icon: Store, title: "竞品分析", desc: "了解周边竞品变化和市场机会。", btn: "分析竞品", to: "/competitors" },
   { icon: Lightbulb, title: "经营策略", desc: "根据你的问题生成具体经营方案。", btn: "获取建议", to: "/advisor" },
 ] as const;
-const flow = ["理解问题", "分析信息", "发现问题", "提出建议", "执行行动"];
 
 function HomePage() {
   const navigate = useNavigate();
@@ -52,23 +51,6 @@ function HomePage() {
         ))}
       </div>
 
-      <h2 className="mb-4 mt-10 text-base font-semibold text-foreground">AI 工作方式</h2>
-      <Card className="p-5">
-        <ol className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
-          {flow.map((s, i) => (
-            <li key={s} className="flex items-center gap-2 sm:flex-1">
-              <span className="flex size-7 items-center justify-center rounded-full bg-accent text-xs font-semibold text-primary">{i + 1}</span>
-              <span className="text-sm font-medium text-foreground">{s}</span>
-              {i < flow.length - 1 && (
-                <>
-                  <ChevronRight className="ml-auto hidden size-4 text-muted-foreground sm:block" aria-hidden="true" />
-                  <ChevronDown className="size-4 text-muted-foreground sm:hidden" aria-hidden="true" />
-                </>
-              )}
-            </li>
-          ))}
-        </ol>
-      </Card>
     </>
   );
 }
