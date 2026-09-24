@@ -1,0 +1,54 @@
+{
+  "status": "ok",
+  "source": "simulated",
+  "as_of": "2026-09-21",
+  "filters": {
+    "homestay_id": "DEMO001",
+    "start": "2026-09-14",
+    "end": "2026-09-20",
+    "group_by": "room_type",
+    "room_type": null,
+    "channel": null
+  },
+  "data": {
+    "series": [
+      {
+        "kind": "historical",
+        "group": "大床房",
+        "room_nights": 14,
+        "revenue": 4440.0,
+        "order_count": 7,
+        "available_room_nights": 70,
+        "rate": 0.2,
+        "rate_reason": null,
+        "room_night_share": 0.22222222
+      },
+      {
+        "kind": "historical",
+        "group": "家庭房",
+        "room_nights": 49,
+        "revenue": 22890.0,
+        "order_count": 7,
+        "available_room_nights": 70,
+        "rate": 0.7,
+        "rate_reason": null,
+        "room_night_share": 0.77777778
+      }
+    ],
+    "comparison": {
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "status": "ok",
+      "current_revenue": 27330.0,
+      "previous_revenue": 39240.0,
+      "revenue_change": -11910.0,
+      "revenue_growth": -0.30351682,
+      "growth_reason": null
+    },
+    "day_type_note": "周末指周六、周日；尚未接入节假日和调休数据"
+  },
+  "warnings": [],
+  "errors": [],
+  "tool": "analyze_trends",
+  "api_version": "1.0"
+}

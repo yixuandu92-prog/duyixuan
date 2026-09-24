@@ -27,7 +27,7 @@ function AnalysisLayout() {
               pathname === "/analysis" ? "bg-accent text-primary" : "text-muted-foreground hover:bg-muted",
             )}
           >
-            AI 分析
+            经营概览
           </Link>
           {sections.map((item) => (
             <Link

@@ -54,7 +54,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Link to="/settings" className="text-sm text-muted-foreground lg:hidden">设置</Link>
           <span className="flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-foreground">
             <span className="size-2 rounded-full bg-success" aria-hidden="true" />
-            AI 在线
+            AI 演示 · 未连接
           </span>
         </div>
         <div className="mx-auto w-full max-w-[1200px] px-4 pb-12 sm:px-8">{children}</div>

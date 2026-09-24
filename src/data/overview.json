@@ -1,0 +1,665 @@
+{
+  "status": "ok",
+  "context": {
+    "dataset_id": "demo-20260921-seed42",
+    "homestay_id": "DEMO001",
+    "homestay_name": "山居演示民宿（虚构）",
+    "source": "simulated",
+    "as_of": "2026-09-21",
+    "updated_at": null,
+    "room_types": [
+      "大床房",
+      "家庭房"
+    ],
+    "channels": [
+      "微信",
+      "携程",
+      "美团"
+    ]
+  },
+  "data": {
+    "metrics": {
+      "status": "ok",
+      "source": "simulated",
+      "as_of": "2026-09-21",
+      "filters": {
+        "homestay_id": "DEMO001",
+        "start": "2026-09-21",
+        "end": "2026-09-27",
+        "room_type": null,
+        "channel": null
+      },
+      "data": {
+        "historical": null,
+        "future": {
+          "start": "2026-09-21",
+          "end": "2026-09-27",
+          "missing_inventory": [],
+          "available_room_nights": {
+            "value": 140,
+            "unit": "room_night",
+            "reason": null
+          },
+          "order_count": {
+            "value": 14,
+            "unit": "order",
+            "reason": null
+          },
+          "booked_room_nights": {
+            "value": 60,
+            "unit": "room_night",
+            "reason": null
+          },
+          "booked_revenue": {
+            "value": 24120.0,
+            "unit": "CNY",
+            "reason": null
+          },
+          "booked_adr": {
+            "value": 402.0,
+            "unit": "CNY/room_night",
+            "reason": null
+          },
+          "booking_rate": {
+            "value": 0.42857143,
+            "unit": "fraction",
+            "reason": null
+          },
+          "remaining_room_nights": {
+            "value": 80,
+            "unit": "room_night",
+            "reason": null
+          }
+        },
+        "cancellation": {
+          "start": "2026-08-23",
+          "end": "2026-09-21",
+          "orders": 140,
+          "cancelled": 58,
+          "rate": {
+            "value": 0.41428571,
+            "unit": "fraction",
+            "reason": null
+          }
+        },
+        "accounting": "住宿总额按房晚分摊；以分为单位将余数分配给较早房晚。历史不含截至日，未来含截至日。"
+      },
+      "warnings": [],
+      "errors": [],
+      "tool": "calculate_metrics",
+      "api_version": "1.0"
+    },
+    "trends": {
+      "status": "ok",
+      "source": "simulated",
+      "as_of": "2026-09-21",
+      "filters": {
+        "homestay_id": "DEMO001",
+        "start": "2026-09-21",
+        "end": "2026-09-27",
+        "group_by": "date",
+        "room_type": null,
+        "channel": null
+      },
+      "data": {
+        "series": [
+          {
+            "kind": "future",
+            "group": "2026-09-21",
+            "room_nights": 2,
+            "revenue": 750.0,
+            "order_count": 2,
+            "available_room_nights": 20,
+            "rate": 0.1,
+            "rate_reason": null,
+            "room_night_share": 0.03333333
+          },
+          {
+            "kind": "future",
+            "group": "2026-09-22",
+            "room_nights": 2,
+            "revenue": 750.0,
+            "order_count": 2,
+            "available_room_nights": 20,
+            "rate": 0.1,
+            "rate_reason": null,
+            "room_night_share": 0.03333333
+          },
+          {
+            "kind": "future",
+            "group": "2026-09-23",
+            "room_nights": 2,
+            "revenue": 750.0,
+            "order_count": 2,
+            "available_room_nights": 20,
+            "rate": 0.1,
+            "rate_reason": null,
+            "room_night_share": 0.03333333
+          },
+          {
+            "kind": "future",
+            "group": "2026-09-24",
+            "room_nights": 14,
+            "revenue": 5100.0,
+            "order_count": 2,
+            "available_room_nights": 20,
+            "rate": 0.7,
+            "rate_reason": null,
+            "room_night_share": 0.23333333
+          },
+          {
+            "kind": "future",
+            "group": "2026-09-25",
+            "room_nights": 13,
+            "revenue": 4800.0,
+            "order_count": 2,
+            "available_room_nights": 20,
+            "rate": 0.65,
+            "rate_reason": null,
+            "room_night_share": 0.21666667
+          },
+          {
+            "kind": "future",
+            "group": "2026-09-26",
+            "room_nights": 14,
+            "revenue": 6240.0,
+            "order_count": 2,
+            "available_room_nights": 20,
+            "rate": 0.7,
+            "rate_reason": null,
+            "room_night_share": 0.23333333
+          },
+          {
+            "kind": "future",
+            "group": "2026-09-27",
+            "room_nights": 13,
+            "revenue": 5730.0,
+            "order_count": 2,
+            "available_room_nights": 20,
+            "rate": 0.65,
+            "rate_reason": null,
+            "room_night_share": 0.21666667
+          }
+        ],
+        "comparison": {
+          "status": "not_comparable",
+          "reason": "仅对完整历史窗口比较；未来预订没有可比的历史提前期快照"
+        },
+        "day_type_note": "周末指周六、周日；尚未接入节假日和调休数据"
+      },
+      "warnings": [],
+      "errors": [],
+      "tool": "analyze_trends",
+      "api_version": "1.0"
+    },
+    "alerts": {
+      "status": "ok",
+      "source": "simulated",
+      "as_of": "2026-09-21",
+      "filters": {
+        "homestay_id": "DEMO001"
+      },
+      "data": {
+        "alerts": [
+          {
+            "rule": "low_booking",
+            "start": "2026-09-21",
+            "end": "2026-09-21",
+            "current": 0.1,
+            "reference": null,
+            "threshold": 0.3,
+            "evidence": {
+              "booked": 2,
+              "available": 20
+            },
+            "severity": "warning"
+          },
+          {
+            "rule": "low_booking",
+            "start": "2026-09-22",
+            "end": "2026-09-22",
+            "current": 0.1,
+            "reference": null,
+            "threshold": 0.3,
+            "evidence": {
+              "booked": 2,
+              "available": 20
+            },
+            "severity": "warning"
+          },
+          {
+            "rule": "low_booking",
+            "start": "2026-09-23",
+            "end": "2026-09-23",
+            "current": 0.1,
+            "reference": null,
+            "threshold": 0.3,
+            "evidence": {
+              "booked": 2,
+              "available": 20
+            },
+            "severity": "warning"
+          },
+          {
+            "rule": "weekly_occupancy_drop",
+            "start": "2026-09-14",
+            "end": "2026-09-20",
+            "current": 0.2,
+            "reference": 0.71428571,
+            "threshold": 0.15,
+            "room_type": "大床房",
+            "difference": 0.51428571,
+            "reference_start": "2026-08-17",
+            "reference_end": "2026-09-13",
+            "evidence": {
+              "current": {
+                "start": "2026-09-14",
+                "end": "2026-09-20",
+                "missing_inventory": [],
+                "available_room_nights": {
+                  "value": 70,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "order_count": {
+                  "value": 7,
+                  "unit": "order",
+                  "reason": null
+                },
+                "sold_room_nights": {
+                  "value": 14,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "room_revenue": {
+                  "value": 4440.0,
+                  "unit": "CNY",
+                  "reason": null
+                },
+                "adr": {
+                  "value": 317.1429,
+                  "unit": "CNY/room_night",
+                  "reason": null
+                },
+                "occupancy_rate": {
+                  "value": 0.2,
+                  "unit": "fraction",
+                  "reason": null
+                },
+                "revpar": {
+                  "value": 63.4286,
+                  "unit": "CNY/available_room_night",
+                  "reason": null
+                }
+              },
+              "reference": {
+                "start": "2026-08-17",
+                "end": "2026-09-13",
+                "missing_inventory": [],
+                "available_room_nights": {
+                  "value": 280,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "order_count": {
+                  "value": 28,
+                  "unit": "order",
+                  "reason": null
+                },
+                "sold_room_nights": {
+                  "value": 200,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "room_revenue": {
+                  "value": 63600.0,
+                  "unit": "CNY",
+                  "reason": null
+                },
+                "adr": {
+                  "value": 318.0,
+                  "unit": "CNY/room_night",
+                  "reason": null
+                },
+                "occupancy_rate": {
+                  "value": 0.71428571,
+                  "unit": "fraction",
+                  "reason": null
+                },
+                "revpar": {
+                  "value": 227.1429,
+                  "unit": "CNY/available_room_night",
+                  "reason": null
+                }
+              }
+            },
+            "severity": "warning"
+          },
+          {
+            "rule": "cancellation_rise",
+            "start": "2026-08-23",
+            "end": "2026-09-21",
+            "current": 0.41428571,
+            "reference": 0.04918033,
+            "threshold": 0.1,
+            "difference": 0.36510538,
+            "evidence": {
+              "current": {
+                "start": "2026-08-23",
+                "end": "2026-09-21",
+                "orders": 140,
+                "cancelled": 58,
+                "rate": {
+                  "value": 0.41428571,
+                  "unit": "fraction",
+                  "reason": null
+                }
+              },
+              "reference": {
+                "start": "2026-07-24",
+                "end": "2026-08-22",
+                "orders": 61,
+                "cancelled": 3,
+                "rate": {
+                  "value": 0.04918033,
+                  "unit": "fraction",
+                  "reason": null
+                }
+              }
+            },
+            "severity": "warning"
+          }
+        ],
+        "checks": [
+          {
+            "rule": "low_booking",
+            "start": "2026-09-21",
+            "end": "2026-09-21",
+            "current": 0.1,
+            "reference": null,
+            "threshold": 0.3,
+            "evidence": {
+              "booked": 2,
+              "available": 20
+            },
+            "status": "alert",
+            "reason": null
+          },
+          {
+            "rule": "low_booking",
+            "start": "2026-09-22",
+            "end": "2026-09-22",
+            "current": 0.1,
+            "reference": null,
+            "threshold": 0.3,
+            "evidence": {
+              "booked": 2,
+              "available": 20
+            },
+            "status": "alert",
+            "reason": null
+          },
+          {
+            "rule": "low_booking",
+            "start": "2026-09-23",
+            "end": "2026-09-23",
+            "current": 0.1,
+            "reference": null,
+            "threshold": 0.3,
+            "evidence": {
+              "booked": 2,
+              "available": 20
+            },
+            "status": "alert",
+            "reason": null
+          },
+          {
+            "rule": "weekly_occupancy_drop",
+            "start": "2026-09-14",
+            "end": "2026-09-20",
+            "current": 0.2,
+            "reference": 0.71428571,
+            "threshold": 0.15,
+            "room_type": "大床房",
+            "difference": 0.51428571,
+            "reference_start": "2026-08-17",
+            "reference_end": "2026-09-13",
+            "evidence": {
+              "current": {
+                "start": "2026-09-14",
+                "end": "2026-09-20",
+                "missing_inventory": [],
+                "available_room_nights": {
+                  "value": 70,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "order_count": {
+                  "value": 7,
+                  "unit": "order",
+                  "reason": null
+                },
+                "sold_room_nights": {
+                  "value": 14,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "room_revenue": {
+                  "value": 4440.0,
+                  "unit": "CNY",
+                  "reason": null
+                },
+                "adr": {
+                  "value": 317.1429,
+                  "unit": "CNY/room_night",
+                  "reason": null
+                },
+                "occupancy_rate": {
+                  "value": 0.2,
+                  "unit": "fraction",
+                  "reason": null
+                },
+                "revpar": {
+                  "value": 63.4286,
+                  "unit": "CNY/available_room_night",
+                  "reason": null
+                }
+              },
+              "reference": {
+                "start": "2026-08-17",
+                "end": "2026-09-13",
+                "missing_inventory": [],
+                "available_room_nights": {
+                  "value": 280,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "order_count": {
+                  "value": 28,
+                  "unit": "order",
+                  "reason": null
+                },
+                "sold_room_nights": {
+                  "value": 200,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "room_revenue": {
+                  "value": 63600.0,
+                  "unit": "CNY",
+                  "reason": null
+                },
+                "adr": {
+                  "value": 318.0,
+                  "unit": "CNY/room_night",
+                  "reason": null
+                },
+                "occupancy_rate": {
+                  "value": 0.71428571,
+                  "unit": "fraction",
+                  "reason": null
+                },
+                "revpar": {
+                  "value": 227.1429,
+                  "unit": "CNY/available_room_night",
+                  "reason": null
+                }
+              }
+            },
+            "status": "alert",
+            "reason": null
+          },
+          {
+            "rule": "weekly_occupancy_drop",
+            "start": "2026-09-14",
+            "end": "2026-09-20",
+            "current": 0.7,
+            "reference": 0.66071429,
+            "threshold": 0.15,
+            "room_type": "家庭房",
+            "difference": -0.03928571,
+            "reference_start": "2026-08-17",
+            "reference_end": "2026-09-13",
+            "evidence": {
+              "current": {
+                "start": "2026-09-14",
+                "end": "2026-09-20",
+                "missing_inventory": [],
+                "available_room_nights": {
+                  "value": 70,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "order_count": {
+                  "value": 7,
+                  "unit": "order",
+                  "reason": null
+                },
+                "sold_room_nights": {
+                  "value": 49,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "room_revenue": {
+                  "value": 22890.0,
+                  "unit": "CNY",
+                  "reason": null
+                },
+                "adr": {
+                  "value": 467.1429,
+                  "unit": "CNY/room_night",
+                  "reason": null
+                },
+                "occupancy_rate": {
+                  "value": 0.7,
+                  "unit": "fraction",
+                  "reason": null
+                },
+                "revpar": {
+                  "value": 327.0,
+                  "unit": "CNY/available_room_night",
+                  "reason": null
+                }
+              },
+              "reference": {
+                "start": "2026-08-17",
+                "end": "2026-09-13",
+                "missing_inventory": [],
+                "available_room_nights": {
+                  "value": 280,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "order_count": {
+                  "value": 28,
+                  "unit": "order",
+                  "reason": null
+                },
+                "sold_room_nights": {
+                  "value": 185,
+                  "unit": "room_night",
+                  "reason": null
+                },
+                "room_revenue": {
+                  "value": 86310.0,
+                  "unit": "CNY",
+                  "reason": null
+                },
+                "adr": {
+                  "value": 466.5405,
+                  "unit": "CNY/room_night",
+                  "reason": null
+                },
+                "occupancy_rate": {
+                  "value": 0.66071429,
+                  "unit": "fraction",
+                  "reason": null
+                },
+                "revpar": {
+                  "value": 308.25,
+                  "unit": "CNY/available_room_night",
+                  "reason": null
+                }
+              }
+            },
+            "status": "ok",
+            "reason": null
+          },
+          {
+            "rule": "cancellation_rise",
+            "start": "2026-08-23",
+            "end": "2026-09-21",
+            "current": 0.41428571,
+            "reference": 0.04918033,
+            "threshold": 0.1,
+            "difference": 0.36510538,
+            "evidence": {
+              "current": {
+                "start": "2026-08-23",
+                "end": "2026-09-21",
+                "orders": 140,
+                "cancelled": 58,
+                "rate": {
+                  "value": 0.41428571,
+                  "unit": "fraction",
+                  "reason": null
+                }
+              },
+              "reference": {
+                "start": "2026-07-24",
+                "end": "2026-08-22",
+                "orders": 61,
+                "cancelled": 3,
+                "rate": {
+                  "value": 0.04918033,
+                  "unit": "fraction",
+                  "reason": null
+                }
+              }
+            },
+            "status": "alert",
+            "reason": null
+          }
+        ],
+        "thresholds": {
+          "low_booking_rate": 0.3,
+          "occupancy_drop_pp": 0.15,
+          "cancellation_rise_pp": 0.1,
+          "min_cohort_orders": 20
+        },
+        "note": "阈值是演示规则，可按业务校准；未分析天气或价格因果关系"
+      },
+      "warnings": [
+        {
+          "code": "cohort_maturity",
+          "message": "较新订单批次观察时间较短，取消率对比仅用于筛查，不代表因果关系"
+        }
+      ],
+      "errors": [],
+      "tool": "detect_anomalies",
+      "api_version": "1.0"
+    }
+  },
+  "warnings": [],
+  "errors": []
+}
