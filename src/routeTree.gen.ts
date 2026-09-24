@@ -11,10 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdvisorRouteImport } from './routes/advisor'
-import { Route as AlertsRouteImport } from './routes/alerts'
-import { Route as ImportDataRouteImport } from './routes/import-data'
-import { Route as TrendsRouteImport } from './routes/trends'
-import { Route as WeeklyReportRouteImport } from './routes/weekly-report'
+import { Route as AnalysisRouteImport } from './routes/analysis'
+import { Route as CompetitorsRouteImport } from './routes/competitors'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as SettingsRouteImport } from './routes/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -26,76 +26,75 @@ const AdvisorRoute = AdvisorRouteImport.update({
   path: '/advisor',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AlertsRoute = AlertsRouteImport.update({
-  id: '/alerts',
-  path: '/alerts',
+const AnalysisRoute = AnalysisRouteImport.update({
+  id: '/analysis',
+  path: '/analysis',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ImportDataRoute = ImportDataRouteImport.update({
-  id: '/import-data',
-  path: '/import-data',
+const CompetitorsRoute = CompetitorsRouteImport.update({
+  id: '/competitors',
+  path: '/competitors',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TrendsRoute = TrendsRouteImport.update({
-  id: '/trends',
-  path: '/trends',
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WeeklyReportRoute = WeeklyReportRouteImport.update({
-  id: '/weekly-report',
-  path: '/weekly-report',
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
-  '/alerts': typeof AlertsRoute
-  '/import-data': typeof ImportDataRoute
-  '/trends': typeof TrendsRoute
-  '/weekly-report': typeof WeeklyReportRoute
+  '/analysis': typeof AnalysisRoute
+  '/competitors': typeof CompetitorsRoute
+  '/pricing': typeof PricingRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
-  '/alerts': typeof AlertsRoute
-  '/import-data': typeof ImportDataRoute
-  '/trends': typeof TrendsRoute
-  '/weekly-report': typeof WeeklyReportRoute
+  '/analysis': typeof AnalysisRoute
+  '/competitors': typeof CompetitorsRoute
+  '/pricing': typeof PricingRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
-  '/alerts': typeof AlertsRoute
-  '/import-data': typeof ImportDataRoute
-  '/trends': typeof TrendsRoute
-  '/weekly-report': typeof WeeklyReportRoute
+  '/analysis': typeof AnalysisRoute
+  '/competitors': typeof CompetitorsRoute
+  '/pricing': typeof PricingRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/advisor' | '/alerts' | '/import-data' | '/trends' | '/weekly-report'
+    '/' | '/advisor' | '/analysis' | '/competitors' | '/pricing' | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    '/' | '/advisor' | '/alerts' | '/import-data' | '/trends' | '/weekly-report'
+  to: '/' | '/advisor' | '/analysis' | '/competitors' | '/pricing' | '/settings'
   id:
     | '__root__'
     | '/'
     | '/advisor'
-    | '/alerts'
-    | '/import-data'
-    | '/trends'
-    | '/weekly-report'
+    | '/analysis'
+    | '/competitors'
+    | '/pricing'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdvisorRoute: typeof AdvisorRoute
-  AlertsRoute: typeof AlertsRoute
-  ImportDataRoute: typeof ImportDataRoute
-  TrendsRoute: typeof TrendsRoute
-  WeeklyReportRoute: typeof WeeklyReportRoute
+  AnalysisRoute: typeof AnalysisRoute
+  CompetitorsRoute: typeof CompetitorsRoute
+  PricingRoute: typeof PricingRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -114,32 +113,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdvisorRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/alerts': {
-      id: '/alerts'
-      path: '/alerts'
-      fullPath: '/alerts'
-      preLoaderRoute: typeof AlertsRouteImport
+    '/analysis': {
+      id: '/analysis'
+      path: '/analysis'
+      fullPath: '/analysis'
+      preLoaderRoute: typeof AnalysisRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/import-data': {
-      id: '/import-data'
-      path: '/import-data'
-      fullPath: '/import-data'
-      preLoaderRoute: typeof ImportDataRouteImport
+    '/competitors': {
+      id: '/competitors'
+      path: '/competitors'
+      fullPath: '/competitors'
+      preLoaderRoute: typeof CompetitorsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/trends': {
-      id: '/trends'
-      path: '/trends'
-      fullPath: '/trends'
-      preLoaderRoute: typeof TrendsRouteImport
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/weekly-report': {
-      id: '/weekly-report'
-      path: '/weekly-report'
-      fullPath: '/weekly-report'
-      preLoaderRoute: typeof WeeklyReportRouteImport
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -148,10 +147,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdvisorRoute: AdvisorRoute,
-  AlertsRoute: AlertsRoute,
-  ImportDataRoute: ImportDataRoute,
-  TrendsRoute: TrendsRoute,
-  WeeklyReportRoute: WeeklyReportRoute,
+  AnalysisRoute: AnalysisRoute,
+  CompetitorsRoute: CompetitorsRoute,
+  PricingRoute: PricingRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
