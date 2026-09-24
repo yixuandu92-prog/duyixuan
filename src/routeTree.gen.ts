@@ -15,6 +15,7 @@ import { Route as AnalysisRouteImport } from './routes/analysis'
 import { Route as CompetitorsRouteImport } from './routes/competitors'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as AnalysisIndexRouteImport } from './routes/analysis/index'
 import { Route as AnalysisAlertsRouteImport } from './routes/analysis/alerts'
 import { Route as AnalysisTrendsRouteImport } from './routes/analysis/trends'
 import { Route as AnalysisWeeklyReportRouteImport } from './routes/analysis/weekly-report'
@@ -49,6 +50,11 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalysisIndexRoute = AnalysisIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AnalysisRoute,
+} as any)
 const AnalysisAlertsRoute = AnalysisAlertsRouteImport.update({
   id: '/alerts',
   path: '/alerts',
@@ -75,17 +81,18 @@ export interface FileRoutesByFullPath {
   '/analysis/alerts': typeof AnalysisAlertsRoute
   '/analysis/trends': typeof AnalysisTrendsRoute
   '/analysis/weekly-report': typeof AnalysisWeeklyReportRoute
+  '/analysis/': typeof AnalysisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
-  '/analysis': typeof AnalysisRouteWithChildren
   '/competitors': typeof CompetitorsRoute
   '/pricing': typeof PricingRoute
   '/settings': typeof SettingsRoute
   '/analysis/alerts': typeof AnalysisAlertsRoute
   '/analysis/trends': typeof AnalysisTrendsRoute
   '/analysis/weekly-report': typeof AnalysisWeeklyReportRoute
+  '/analysis': typeof AnalysisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +105,7 @@ export interface FileRoutesById {
   '/analysis/alerts': typeof AnalysisAlertsRoute
   '/analysis/trends': typeof AnalysisTrendsRoute
   '/analysis/weekly-report': typeof AnalysisWeeklyReportRoute
+  '/analysis/': typeof AnalysisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,17 +119,18 @@ export interface FileRouteTypes {
     | '/analysis/alerts'
     | '/analysis/trends'
     | '/analysis/weekly-report'
+    | '/analysis/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/advisor'
-    | '/analysis'
     | '/competitors'
     | '/pricing'
     | '/settings'
     | '/analysis/alerts'
     | '/analysis/trends'
     | '/analysis/weekly-report'
+    | '/analysis'
   id:
     | '__root__'
     | '/'
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/analysis/alerts'
     | '/analysis/trends'
     | '/analysis/weekly-report'
+    | '/analysis/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -188,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analysis/': {
+      id: '/analysis/'
+      path: '/'
+      fullPath: '/analysis/'
+      preLoaderRoute: typeof AnalysisIndexRouteImport
+      parentRoute: typeof AnalysisRoute
+    }
     '/analysis/alerts': {
       id: '/analysis/alerts'
       path: '/alerts'
@@ -216,12 +233,14 @@ interface AnalysisRouteChildren {
   AnalysisAlertsRoute: typeof AnalysisAlertsRoute
   AnalysisTrendsRoute: typeof AnalysisTrendsRoute
   AnalysisWeeklyReportRoute: typeof AnalysisWeeklyReportRoute
+  AnalysisIndexRoute: typeof AnalysisIndexRoute
 }
 
 const AnalysisRouteChildren: AnalysisRouteChildren = {
   AnalysisAlertsRoute: AnalysisAlertsRoute,
   AnalysisTrendsRoute: AnalysisTrendsRoute,
   AnalysisWeeklyReportRoute: AnalysisWeeklyReportRoute,
+  AnalysisIndexRoute: AnalysisIndexRoute,
 }
 
 const AnalysisRouteWithChildren = AnalysisRoute._addFileChildren(

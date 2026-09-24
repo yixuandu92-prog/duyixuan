@@ -42,7 +42,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
         <nav aria-label="主要菜单" className="flex gap-1 overflow-x-auto px-3 pb-3 lg:flex-1 lg:flex-col lg:overflow-visible">
           {navigation.map((item) => (
-            <NavItem key={item.to} {...item} active={pathname === item.to} />
+            <NavItem key={item.to} {...item} active={item.to === "/" ? pathname === "/" : pathname.startsWith(item.to)} />
           ))}
         </nav>
         <div className="hidden border-t border-border p-3 lg:block">
