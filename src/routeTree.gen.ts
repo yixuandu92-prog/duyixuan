@@ -11,13 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdvisorRouteImport } from './routes/advisor'
-import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as AnalysisRouteImport } from './routes/analysis'
 import { Route as CompetitorsRouteImport } from './routes/competitors'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as TrendsRouteImport } from './routes/trends'
-import { Route as WeeklyReportRouteImport } from './routes/weekly-report'
+import { Route as AnalysisIndexRouteImport } from './routes/analysis/index'
+import { Route as AnalysisAlertsRouteImport } from './routes/analysis/alerts'
+import { Route as AnalysisTrendsRouteImport } from './routes/analysis/trends'
+import { Route as AnalysisWeeklyReportRouteImport } from './routes/analysis/weekly-report'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -27,11 +28,6 @@ const IndexRoute = IndexRouteImport.update({
 const AdvisorRoute = AdvisorRouteImport.update({
   id: '/advisor',
   path: '/advisor',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AlertsRoute = AlertsRouteImport.update({
-  id: '/alerts',
-  path: '/alerts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnalysisRoute = AnalysisRouteImport.update({
@@ -54,97 +50,108 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TrendsRoute = TrendsRouteImport.update({
+const AnalysisIndexRoute = AnalysisIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AnalysisRoute,
+} as any)
+const AnalysisAlertsRoute = AnalysisAlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => AnalysisRoute,
+} as any)
+const AnalysisTrendsRoute = AnalysisTrendsRouteImport.update({
   id: '/trends',
   path: '/trends',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AnalysisRoute,
 } as any)
-const WeeklyReportRoute = WeeklyReportRouteImport.update({
+const AnalysisWeeklyReportRoute = AnalysisWeeklyReportRouteImport.update({
   id: '/weekly-report',
   path: '/weekly-report',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AnalysisRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
-  '/alerts': typeof AlertsRoute
-  '/analysis': typeof AnalysisRoute
+  '/analysis': typeof AnalysisRouteWithChildren
   '/competitors': typeof CompetitorsRoute
   '/pricing': typeof PricingRoute
   '/settings': typeof SettingsRoute
-  '/trends': typeof TrendsRoute
-  '/weekly-report': typeof WeeklyReportRoute
+  '/analysis/alerts': typeof AnalysisAlertsRoute
+  '/analysis/trends': typeof AnalysisTrendsRoute
+  '/analysis/weekly-report': typeof AnalysisWeeklyReportRoute
+  '/analysis/': typeof AnalysisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
-  '/alerts': typeof AlertsRoute
-  '/analysis': typeof AnalysisRoute
   '/competitors': typeof CompetitorsRoute
   '/pricing': typeof PricingRoute
   '/settings': typeof SettingsRoute
-  '/trends': typeof TrendsRoute
-  '/weekly-report': typeof WeeklyReportRoute
+  '/analysis/alerts': typeof AnalysisAlertsRoute
+  '/analysis/trends': typeof AnalysisTrendsRoute
+  '/analysis/weekly-report': typeof AnalysisWeeklyReportRoute
+  '/analysis': typeof AnalysisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
-  '/alerts': typeof AlertsRoute
-  '/analysis': typeof AnalysisRoute
+  '/analysis': typeof AnalysisRouteWithChildren
   '/competitors': typeof CompetitorsRoute
   '/pricing': typeof PricingRoute
   '/settings': typeof SettingsRoute
-  '/trends': typeof TrendsRoute
-  '/weekly-report': typeof WeeklyReportRoute
+  '/analysis/alerts': typeof AnalysisAlertsRoute
+  '/analysis/trends': typeof AnalysisTrendsRoute
+  '/analysis/weekly-report': typeof AnalysisWeeklyReportRoute
+  '/analysis/': typeof AnalysisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/advisor'
-    | '/alerts'
     | '/analysis'
     | '/competitors'
     | '/pricing'
     | '/settings'
-    | '/trends'
-    | '/weekly-report'
+    | '/analysis/alerts'
+    | '/analysis/trends'
+    | '/analysis/weekly-report'
+    | '/analysis/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/advisor'
-    | '/alerts'
-    | '/analysis'
     | '/competitors'
     | '/pricing'
     | '/settings'
-    | '/trends'
-    | '/weekly-report'
+    | '/analysis/alerts'
+    | '/analysis/trends'
+    | '/analysis/weekly-report'
+    | '/analysis'
   id:
     | '__root__'
     | '/'
     | '/advisor'
-    | '/alerts'
     | '/analysis'
     | '/competitors'
     | '/pricing'
     | '/settings'
-    | '/trends'
-    | '/weekly-report'
+    | '/analysis/alerts'
+    | '/analysis/trends'
+    | '/analysis/weekly-report'
+    | '/analysis/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdvisorRoute: typeof AdvisorRoute
-  AlertsRoute: typeof AlertsRoute
-  AnalysisRoute: typeof AnalysisRoute
+  AnalysisRoute: typeof AnalysisRouteWithChildren
   CompetitorsRoute: typeof CompetitorsRoute
   PricingRoute: typeof PricingRoute
   SettingsRoute: typeof SettingsRoute
-  TrendsRoute: typeof TrendsRoute
-  WeeklyReportRoute: typeof WeeklyReportRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -161,13 +168,6 @@ declare module '@tanstack/react-router' {
       path: '/advisor'
       fullPath: '/advisor'
       preLoaderRoute: typeof AdvisorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/alerts': {
-      id: '/alerts'
-      path: '/alerts'
-      fullPath: '/alerts'
-      preLoaderRoute: typeof AlertsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/analysis': {
@@ -198,33 +198,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/trends': {
-      id: '/trends'
-      path: '/trends'
-      fullPath: '/trends'
-      preLoaderRoute: typeof TrendsRouteImport
-      parentRoute: typeof rootRouteImport
+    '/analysis/': {
+      id: '/analysis/'
+      path: '/'
+      fullPath: '/analysis/'
+      preLoaderRoute: typeof AnalysisIndexRouteImport
+      parentRoute: typeof AnalysisRoute
     }
-    '/weekly-report': {
-      id: '/weekly-report'
+    '/analysis/alerts': {
+      id: '/analysis/alerts'
+      path: '/alerts'
+      fullPath: '/analysis/alerts'
+      preLoaderRoute: typeof AnalysisAlertsRouteImport
+      parentRoute: typeof AnalysisRoute
+    }
+    '/analysis/trends': {
+      id: '/analysis/trends'
+      path: '/trends'
+      fullPath: '/analysis/trends'
+      preLoaderRoute: typeof AnalysisTrendsRouteImport
+      parentRoute: typeof AnalysisRoute
+    }
+    '/analysis/weekly-report': {
+      id: '/analysis/weekly-report'
       path: '/weekly-report'
-      fullPath: '/weekly-report'
-      preLoaderRoute: typeof WeeklyReportRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/analysis/weekly-report'
+      preLoaderRoute: typeof AnalysisWeeklyReportRouteImport
+      parentRoute: typeof AnalysisRoute
     }
   }
 }
 
+interface AnalysisRouteChildren {
+  AnalysisAlertsRoute: typeof AnalysisAlertsRoute
+  AnalysisTrendsRoute: typeof AnalysisTrendsRoute
+  AnalysisWeeklyReportRoute: typeof AnalysisWeeklyReportRoute
+  AnalysisIndexRoute: typeof AnalysisIndexRoute
+}
+
+const AnalysisRouteChildren: AnalysisRouteChildren = {
+  AnalysisAlertsRoute: AnalysisAlertsRoute,
+  AnalysisTrendsRoute: AnalysisTrendsRoute,
+  AnalysisWeeklyReportRoute: AnalysisWeeklyReportRoute,
+  AnalysisIndexRoute: AnalysisIndexRoute,
+}
+
+const AnalysisRouteWithChildren = AnalysisRoute._addFileChildren(
+  AnalysisRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdvisorRoute: AdvisorRoute,
-  AlertsRoute: AlertsRoute,
-  AnalysisRoute: AnalysisRoute,
+  AnalysisRoute: AnalysisRouteWithChildren,
   CompetitorsRoute: CompetitorsRoute,
   PricingRoute: PricingRoute,
   SettingsRoute: SettingsRoute,
-  TrendsRoute: TrendsRoute,
-  WeeklyReportRoute: WeeklyReportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

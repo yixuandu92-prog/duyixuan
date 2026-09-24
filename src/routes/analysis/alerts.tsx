@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AlertCircle, CircleAlert, CircleCheck } from "lucide-react";
 import { PageHeading, Panel } from "@/components/dashboard/page-elements";
 
-export const Route = createFileRoute("/alerts")({
+export const Route = createFileRoute("/analysis/alerts")({
   head: () => ({ meta: [
     { title: "风险预警｜山居经营助手" }, { name: "description", content: "按优先级查看民宿经营风险和可执行建议。" },
     { property: "og:title", content: "风险预警｜山居经营助手" }, { property: "og:description", content: "按优先级查看民宿经营风险和可执行建议。" },

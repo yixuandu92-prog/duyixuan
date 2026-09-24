@@ -3,7 +3,7 @@ import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyChart, PageHeading, Panel, PanelTitle } from "@/components/dashboard/page-elements";
 
-export const Route = createFileRoute("/trends")({
+export const Route = createFileRoute("/analysis/trends")({
   head: () => ({ meta: [
     { title: "数据与趋势｜山居经营助手" }, { name: "description", content: "查看民宿入住率、平均房价、RevPAR 与房费收入趋势。" },
     { property: "og:title", content: "数据与趋势｜山居经营助手" }, { property: "og:description", content: "查看民宿入住率、平均房价、RevPAR 与房费收入趋势。" },

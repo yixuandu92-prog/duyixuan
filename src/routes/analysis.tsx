@@ -1,50 +1,52 @@
-import { useState } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
-import { AgentAvatar, AgentRun, AskBox, Card, Chips, PageTitle, ResultSection, meta } from "@/components/dashboard/agent";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
+import { AlertTriangle, BarChart3, ClipboardList } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { meta } from "@/components/dashboard/agent";
 
 export const Route = createFileRoute("/analysis")({
   head: () => meta("经营分析", "让 AI 帮你发现经营问题，分析原因并给出经营建议。"),
-  component: AnalysisPage,
+  component: AnalysisLayout,
 });
 
-const tasks = ["收入变化原因", "入住表现", "房型表现", "客源变化", "渠道表现"];
-const steps = ["正在理解问题...", "正在分析相关信息...", "正在寻找可能原因...", "正在生成经营建议..."];
+const sections = [
+  { to: "/analysis/trends", label: "数据与趋势", icon: BarChart3 },
+  { to: "/analysis/alerts", label: "风险预警", icon: AlertTriangle },
+  { to: "/analysis/weekly-report", label: "经营周报", icon: ClipboardList },
+] as const;
 
-function AnalysisPage() {
-  const navigate = useNavigate();
-  const [task, setTask] = useState<string | null>(null);
-  const [run, setRun] = useState(0);
-  const start = (q: string) => { setTask(q); setRun((n) => n + 1); };
+function AnalysisLayout() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
-    <>
-      <PageTitle title="经营分析" subtitle="让 AI 帮你发现经营问题。" />
-      <Card>
-        <div className="flex items-center gap-3"><AgentAvatar /><p className="font-semibold text-foreground">你想了解哪方面的经营情况？</p></div>
-        <div className="mt-5"><AskBox placeholder="例如：为什么最近订单减少？" button="开始分析" onAsk={start} /></div>
-        <p className="mb-3 mt-6 text-sm font-medium text-muted-foreground">常见分析任务</p>
-        <Chips items={tasks} onPick={start} active={task} />
-      </Card>
-      {task && (
-        <div className="mt-6">
-          <p className="mb-3 text-sm text-muted-foreground">分析任务：<span className="font-medium text-foreground">{task}</span></p>
-          <AgentRun runKey={`${task}-${run}`} steps={steps}>
-            <Card>
-              <p className="font-semibold text-foreground">AI 分析完成</p>
-              <p className="mt-1 text-sm text-muted-foreground">我发现当前经营中可能存在几个值得关注的问题。</p>
-              <div className="mt-5 grid gap-3 md:grid-cols-3">
-                <ResultSection title="问题发现">部分时段的需求表现可能偏弱。</ResultSection>
-                <ResultSection title="原因分析">可能与价格、市场需求和竞品变化有关。</ResultSection>
-                <ResultSection title="经营建议">建议进一步检查相关时段的价格策略和市场竞争情况。</ResultSection>
-              </div>
-              <div className="mt-5 flex flex-wrap gap-2">
-                <Button variant="outline" onClick={() => navigate({ to: "/advisor", search: { q: `继续分析：${task}` } as never })}>继续分析</Button>
-                <Button onClick={() => navigate({ to: "/advisor", search: { q: `生成经营方案：${task}` } as never })}>生成经营方案</Button>
-              </div>
-            </Card>
-          </AgentRun>
-        </div>
-      )}
-    </>
+    <div className="lg:grid lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-8">
+      <aside className="mb-6 lg:mb-0">
+        <nav aria-label="经营分析栏目" className="flex gap-1 overflow-x-auto lg:sticky lg:top-6 lg:flex-col">
+          <Link
+            to="/analysis"
+            className={cn(
+              "flex h-9 shrink-0 items-center rounded-lg px-3 text-sm font-medium transition-colors",
+              pathname === "/analysis" ? "bg-accent text-primary" : "text-muted-foreground hover:bg-muted",
+            )}
+          >
+            AI 分析
+          </Link>
+          {sections.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={cn(
+                "flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-sm font-medium transition-colors",
+                pathname === item.to ? "bg-accent text-primary" : "text-muted-foreground hover:bg-muted",
+              )}
+            >
+              <item.icon className="size-4" aria-hidden="true" />
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </aside>
+      <div className="min-w-0">
+        <Outlet />
+      </div>
+    </div>
   );
 }
