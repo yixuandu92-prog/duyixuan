@@ -11,10 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdvisorRouteImport } from './routes/advisor'
+import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as AnalysisRouteImport } from './routes/analysis'
 import { Route as CompetitorsRouteImport } from './routes/competitors'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TrendsRouteImport } from './routes/trends'
+import { Route as WeeklyReportRouteImport } from './routes/weekly-report'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdvisorRoute = AdvisorRouteImport.update({
   id: '/advisor',
   path: '/advisor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnalysisRoute = AnalysisRouteImport.update({
@@ -46,55 +54,97 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrendsRoute = TrendsRouteImport.update({
+  id: '/trends',
+  path: '/trends',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeeklyReportRoute = WeeklyReportRouteImport.update({
+  id: '/weekly-report',
+  path: '/weekly-report',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
+  '/alerts': typeof AlertsRoute
   '/analysis': typeof AnalysisRoute
   '/competitors': typeof CompetitorsRoute
   '/pricing': typeof PricingRoute
   '/settings': typeof SettingsRoute
+  '/trends': typeof TrendsRoute
+  '/weekly-report': typeof WeeklyReportRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
+  '/alerts': typeof AlertsRoute
   '/analysis': typeof AnalysisRoute
   '/competitors': typeof CompetitorsRoute
   '/pricing': typeof PricingRoute
   '/settings': typeof SettingsRoute
+  '/trends': typeof TrendsRoute
+  '/weekly-report': typeof WeeklyReportRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/advisor': typeof AdvisorRoute
+  '/alerts': typeof AlertsRoute
   '/analysis': typeof AnalysisRoute
   '/competitors': typeof CompetitorsRoute
   '/pricing': typeof PricingRoute
   '/settings': typeof SettingsRoute
+  '/trends': typeof TrendsRoute
+  '/weekly-report': typeof WeeklyReportRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/advisor' | '/analysis' | '/competitors' | '/pricing' | '/settings'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/advisor' | '/analysis' | '/competitors' | '/pricing' | '/settings'
-  id:
-    | '__root__'
     | '/'
     | '/advisor'
+    | '/alerts'
     | '/analysis'
     | '/competitors'
     | '/pricing'
     | '/settings'
+    | '/trends'
+    | '/weekly-report'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/advisor'
+    | '/alerts'
+    | '/analysis'
+    | '/competitors'
+    | '/pricing'
+    | '/settings'
+    | '/trends'
+    | '/weekly-report'
+  id:
+    | '__root__'
+    | '/'
+    | '/advisor'
+    | '/alerts'
+    | '/analysis'
+    | '/competitors'
+    | '/pricing'
+    | '/settings'
+    | '/trends'
+    | '/weekly-report'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdvisorRoute: typeof AdvisorRoute
+  AlertsRoute: typeof AlertsRoute
   AnalysisRoute: typeof AnalysisRoute
   CompetitorsRoute: typeof CompetitorsRoute
   PricingRoute: typeof PricingRoute
   SettingsRoute: typeof SettingsRoute
+  TrendsRoute: typeof TrendsRoute
+  WeeklyReportRoute: typeof WeeklyReportRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -111,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/advisor'
       fullPath: '/advisor'
       preLoaderRoute: typeof AdvisorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/analysis': {
@@ -141,16 +198,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trends': {
+      id: '/trends'
+      path: '/trends'
+      fullPath: '/trends'
+      preLoaderRoute: typeof TrendsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/weekly-report': {
+      id: '/weekly-report'
+      path: '/weekly-report'
+      fullPath: '/weekly-report'
+      preLoaderRoute: typeof WeeklyReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdvisorRoute: AdvisorRoute,
+  AlertsRoute: AlertsRoute,
   AnalysisRoute: AnalysisRoute,
   CompetitorsRoute: CompetitorsRoute,
   PricingRoute: PricingRoute,
   SettingsRoute: SettingsRoute,
+  TrendsRoute: TrendsRoute,
+  WeeklyReportRoute: WeeklyReportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
